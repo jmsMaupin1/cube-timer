@@ -1,16 +1,30 @@
 <template>
   <div id="app">
     <scramble></scramble>
+    <timer></timer>
   </div>
 </template>
 
 <script>
 import Scramble from './components/Scramble'
+import Timer from './components/Timer'
+import EventBus from './components/EventBus'
 
 export default {
   name: 'app',
   components: {
-    Scramble
+    Scramble,
+    Timer
+  },
+  created: function () {
+    window.addEventListener('keyup', this.keyup)
+  },
+  methods: {
+    keyup: function (e) {
+      if (e.code === 'Space') {
+        EventBus.$emit('space')
+      }
+    }
   }
 }
 </script>
