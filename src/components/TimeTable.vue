@@ -3,7 +3,7 @@
     <el-table border 
       :data='tableData'
       max-height=520 
-      empty-text=' '>
+      empty-text='Begin Solving!'>
       <el-table-column type='index' width=80 />
       <el-table-column prop='time' label='Time' />
     </el-table>
