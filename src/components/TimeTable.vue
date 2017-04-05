@@ -8,12 +8,14 @@
       <el-table-column prop='time' label='Time' />
     </el-table>
 
-    <div class='ao5'>
-      Average Of 5: <span class='average'>{{averageOf5}}</span>
-    </div>
+    <div class="averages">
+      <div class='ao5'>
+        Average Of 5: <span class='average-time'>{{averageOf5}}</span>
+      </div>
 
-    <div class='ao12'>
-      Average Of 12: <span class='average'>{{averageOf12}}</span>
+      <div class='ao12'>
+        Average Of 12: <span class='average-time'>{{averageOf12}}</span>
+      </div>
     </div>
   </el-card>
 </template>
@@ -65,6 +67,7 @@ export default {
 
 <style lang="css" scoped>
   .time-table {
+    position: relative;
     float: left;
     margin-top: 1%;
     width: 17%;
@@ -75,7 +78,13 @@ export default {
     padding-top: 20px;
   }
 
-  .average {
+  .averages {
+    width: 80%;
+    position: absolute;
+    bottom: 15px;
+  }
+
+  .average-time {
     float: right;
   }
 </style>
