@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <scramble></scramble>
+    <TimeTable></TimeTable>
     <timer></timer>
   </div>
 </template>
@@ -9,12 +10,14 @@
 import Scramble from './components/Scramble'
 import Timer from './components/Timer'
 import EventBus from './components/EventBus'
+import TimeTable from './components/TimeTable'
 
 export default {
   name: 'app',
   components: {
     Scramble,
-    Timer
+    Timer,
+    TimeTable
   },
   created: function () {
     window.addEventListener('keyup', this.keyup)
@@ -34,8 +37,5 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

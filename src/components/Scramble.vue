@@ -1,8 +1,10 @@
 <template>
   <div class="scramble">
-    <h1>
-      {{scramble}}
-    </h1>
+    <el-card class="box-card">
+      <h1>
+        {{scramble}}
+      </h1>
+    </el-card>
   </div>
 </template>
 
@@ -22,7 +24,11 @@ export default {
     this.getScramble()
   },
   mounted: function () {
-    EventBus.$on('clock-stopped', () => {
+    EventBus.$on('clock-stopped', payload => {
+      EventBus.$emit('store', {
+        time: payload.time,
+        scramble: this.scramble
+      })
       this.getScramble()
     })
   },
@@ -52,4 +58,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .box-card {
+    text-align: center;
+  }
 </style>

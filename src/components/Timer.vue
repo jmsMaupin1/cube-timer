@@ -1,5 +1,7 @@
 <template>
-  <h1>{{time}}</h1>
+  <div class='timer'>
+    <h1>{{time}}</h1>
+  </div>
 </template>
 
 <script>
@@ -37,7 +39,7 @@ export default {
     stopClock: function () {
       clearInterval(this.timer)
       this.timer = false
-      EventBus.$emit('clock-stopped')
+      EventBus.$emit('clock-stopped', {time: this.time})
     },
     toggleClock: function () {
       if (this.timer) {
@@ -56,4 +58,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .timer {
+    line-height: 60vh;
+    font-size: 4em;
+    width: 80%;
+    text-align: center;
+  }
 </style>
