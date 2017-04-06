@@ -3,7 +3,7 @@
     <scramble></scramble>
     <TimeTable></TimeTable>
     <timer></timer>
-    <CubeRep></CubeRep>
+    <CubeRep scramble="R U R' U'"></CubeRep>
   </div>
 </template>
 
