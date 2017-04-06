@@ -3,6 +3,7 @@
     <scramble></scramble>
     <TimeTable></TimeTable>
     <timer></timer>
+    <CubeRep></CubeRep>
   </div>
 </template>
 
@@ -11,13 +12,15 @@ import Scramble from './components/Scramble'
 import Timer from './components/Timer'
 import EventBus from './components/EventBus'
 import TimeTable from './components/TimeTable'
+import CubeRep from './components/CubeRepresentation'
 
 export default {
   name: 'app',
   components: {
     Scramble,
     Timer,
-    TimeTable
+    TimeTable,
+    CubeRep
   },
   created: function () {
     window.addEventListener('keyup', this.keyup)
