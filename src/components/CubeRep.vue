@@ -22,7 +22,7 @@ export default {
 
       sliceMoves: [
         // Cycle array for L moves
-        [7, 3, 1, 5, 8, 2, 0, 6, 45, 35, 36,
+        [5, 1, 3, 7, 8, 2, 0, 6, 45, 35, 36,
           9, 48, 32, 39, 12, 51, 29, 42, 15],
         // Cycle array for U moves
         [12, 16, 14, 10, 15, 17, 11, 9, 8, 38,
@@ -31,15 +31,20 @@ export default {
         [25, 23, 19, 21, 26, 20, 18, 24, 38, 33,
           47, 11, 41, 30, 50, 14, 44, 27, 53, 17],
         // Cycle array for D movs
-        [30, 34, 32, 28, 33, 35, 29, 27, 47, 26,
+        [28, 32, 34, 30, 33, 35, 29, 27, 47, 26,
           42, 0, 46, 23, 43, 3, 45, 20, 44, 6],
         // Cycle array for F moves
         [43, 41, 37, 39, 42, 44, 38, 36, 6, 33,
           24, 15, 7, 34, 25, 16, 8, 35, 26, 17],
         // Cycle array for B moves
-        [48, 46, 50, 52, 51, 45, 47, 53, 0, 9,
+        [52, 50, 46, 48, 53, 47, 45, 51, 0, 9,
           18, 27, 1, 10, 19, 28, 2, 11, 20, 29]
       ]
+    }
+  },
+  watch: {
+    scramble: function (val) {
+      this.doScramble(val)
     }
   },
   mounted: function () {
@@ -165,8 +170,10 @@ export default {
           break
       }
     },
-    doScramble: function () {
-      let scrambleArray = this.scramble.split(' ')
+    doScramble: function (s) {
+      let scrambleArray = s.split(' ')
+      console.log(s)
+      console.log(scrambleArray)
       let possibleMoves = 'LURDFB'
 
       for (let index in scrambleArray) {
@@ -205,8 +212,8 @@ export default {
          39 40 41
          42 43 44
 
-L:  7, 3, 1, 5,
-    8, 2, 0, 6,
+L:  5, 1, 3, 7,
+    6, 0, 2, 8
     45, 35, 36, 9,
     48, 32, 39, 12,
     51, 29, 42, 15  

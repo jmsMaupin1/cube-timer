@@ -20,8 +20,7 @@ export default {
       scramble: ''
     }
   },
-
-  mounted: function () {
+  created: function () {
     EventBus.$on('scramble-generated', payload => {
       this.scramble = payload
     })

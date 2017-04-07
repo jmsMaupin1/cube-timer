@@ -20,6 +20,9 @@ export default {
       scramble: ''
     }
   },
+  beforeCreate: function () {
+    EventBus.$emit('test')
+  },
   created: function () {
     this.getScramble()
   },
@@ -47,7 +50,7 @@ export default {
       let axis = [['U', 'D'], ['F', 'B'], ['R', 'L']]
       // you can either turn a slice:
       // clockwise ' ', counterclockwise '\'', 180 degrees '2'
-      let mods = [' ', '\'', '2']
+      let mods = ['', '\'', '2']
       let lastAxis = -1
       let currentAxis = -1
 
@@ -65,8 +68,7 @@ export default {
 
         lastAxis = currentAxis
       }
-
-      EventBus.$emit('scramble-generated', this.scramble)
+      EventBus.$emit('scramble-generated', this.scramble.trim())
     }
   }
 }
