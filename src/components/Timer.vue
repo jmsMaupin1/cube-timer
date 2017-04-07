@@ -51,7 +51,8 @@ export default {
   },
   computed: {
     time: function () {
-      return this.secs + '.' + (this.nanosecs < 10 ? '0' + this.nanosecs : this.nanosecs)
+      return this.secs + '.' +
+        (this.nanosecs < 10 ? '0' + this.nanosecs : this.nanosecs)
     }
   }
 }

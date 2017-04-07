@@ -38,6 +38,7 @@ export default {
     })
   },
   computed: {
+    // get the last 5 elements added to the array and then average them
     averageOf5: function () {
       let tableLength = this.tableData.length
       if (tableLength > 4) {
@@ -50,6 +51,7 @@ export default {
       }
     },
 
+    // same thing as above but the last 12 elements
     averageOf12: function () {
       let tableLength = this.tableData.length
       if (tableLength > 11) {

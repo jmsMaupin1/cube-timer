@@ -1,7 +1,5 @@
 <template>
-    <el-card class="cube-rep">
-        <canvas width='390' height='240' ref='canvas'></canvas>
-    </el-card>
+  <canvas width='390' height='240' ref='canvas'></canvas>
 </template>
 
 <script>
@@ -167,8 +165,8 @@ export default {
           break
       }
     },
-    doScramble: function (scram) {
-      let scrambleArray = scram.split(' ')
+    doScramble: function () {
+      let scrambleArray = this.scramble.split(' ')
       let possibleMoves = 'LURDFB'
 
       for (let index in scrambleArray) {
@@ -185,15 +183,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-    .cube-rep {
-        position: absolute;
-        background: #ccc;
-        width: 400px;
-        height: 250px;
-        bottom: 5px;
-        right: 5px;
-    }
-
     .cube-rep canvas {
       position: absolute;
       top: 5px;
