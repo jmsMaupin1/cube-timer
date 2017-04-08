@@ -1,9 +1,9 @@
 <template>
   <div id="app">
+    <LiveCubeRep></LiveCubeRep>
     <scramble></scramble>
     <TimeTable></TimeTable>
     <timer></timer>
-    <LiveCubeRep></LiveCubeRep>
   </div>
 </template>
 
