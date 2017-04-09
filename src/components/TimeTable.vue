@@ -10,7 +10,10 @@
         <el-table-column prop='time' label='Time' />
       </el-table>
 
-      <el-button v-on:click='clearData' class='btn-clear'>
+      <el-button
+        @click='clearData(this)'
+        class='btn-clear'
+        type='danger'>
         Clear Times
       </el-button>
 
@@ -29,10 +32,19 @@
       title='Scramble Recap'
       v-model='dialogVisible'
     >
-      <div>Scramble: {{scramble}}</div>      
+      <div class='dialog-scramble'>Scramble: {{scramble}}</div>      
       <CubeRep :scramble='scramble' />
-      <div>Time: {{dialogTime}}</div>
+      <div class='dialog-time'>Time: {{time}}</div>
+      <span slot='footer' class='dialog-footer'>
+        <el-button 
+          @click='deleteEntry({time, scramble})'
+          type='danger'
+          >
+          Delete Scramble
+        </el-button>
+      </span>
     </el-dialog>
+
   </div>
 </template>
 
@@ -48,7 +60,7 @@ export default {
     return {
       tableData: [],
       dialogVisible: false,
-      dialogTime: 0.00,
+      time: 0.00,
       scramble: ''
     }
   },
@@ -56,13 +68,21 @@ export default {
     CubeRep
   },
   methods: {
-    clearData: function () {
+    clearData: function (e) {
       this.tableData = []
     },
     showDialog: function (row, event, column) {
       this.scramble = row.scramble
-      this.dialogTime = row.time
+      this.time = row.time
       this.dialogVisible = true
+    },
+    deleteEntry: function (entry) {
+      this.dialogVisible = false
+      this.tableData = this.tableData.filter((e) => {
+        return (
+          JSON.stringify(entry) !== JSON.stringify(e)
+        )
+      })
     }
   },
   created: function () {
@@ -129,5 +149,9 @@ export default {
 
   .scramble-dialog {
     background: gray;
+  }
+
+  .dialog-time, .dialog-scramble {
+    font-size: 1.5em;
   }
 </style>
