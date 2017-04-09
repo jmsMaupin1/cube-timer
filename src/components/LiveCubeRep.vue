@@ -1,3 +1,4 @@
+<!-- This component is just a wrapper component to position the CubeRep in the bottom Right and update the scramble as its generated -->
 <template>
   <el-card class='live-cube-rep'>
     <CubeRep v-bind:scramble='scramble'></CubeRep>

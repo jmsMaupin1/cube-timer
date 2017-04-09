@@ -11,7 +11,7 @@
       </el-table>
 
       <el-button
-        @click='clearData(this)'
+        @click='clearData'
         class='btn-clear'
         type='danger'>
         Clear Times
@@ -68,8 +68,9 @@ export default {
     CubeRep
   },
   methods: {
-    clearData: function (e) {
+    clearData: function () {
       this.tableData = []
+      document.activeElement.blur()
     },
     showDialog: function (row, event, column) {
       this.scramble = row.scramble

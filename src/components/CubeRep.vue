@@ -9,6 +9,8 @@ export default {
   props: ['scramble'],
   data () {
     return {
+      // Each number corresponds to a sticker color
+      // Orange, White, Red, Yellow, Green, Blue
       initialCubeState: [
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -18,6 +20,7 @@ export default {
         5, 5, 5, 5, 5, 5, 5, 5, 5
       ],
 
+      // an array container arrays of stickers to cycle or swap
       sliceMoves: [
         // Cycle array for L moves
         [
