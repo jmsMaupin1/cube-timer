@@ -2,6 +2,9 @@
 
 > vue app that generates scrambles and tracks solving time for a rubik's cube
 
+[Main App with an average of 12 taken](/screenshots/AverageOf12.png?raw=true)
+
+[Dialog of a particular scramble](/screenshots/scrambleRecap.png?raw=true)
 ## Build Setup
 
 ``` bash
