@@ -84,7 +84,7 @@ export default {
       let cubeData = this.initialCubeState.slice(0)
 
       if (this.scramble) {
-        this.doScramble(cubeData, this.scramble)
+        this.doScramble(cubeData, this.scramble.trim())
       }
 
       return cubeData
@@ -142,7 +142,6 @@ export default {
     doScramble: function (cubeState, scramble) {
       let moves = scramble.split(' ')
       let possibleMoves = 'LURDFB'
-
       for (let index in moves) {
         let move = moves[index]
         let slice = possibleMoves.indexOf(move.split('')[0])
@@ -168,11 +167,20 @@ export default {
       // and then change the offset to the right to draw another face
       // after draw the B and F faces above and below the U face respecitvely
       for (let face = 0; face < 4; ++face) {
+        let bgX = (offset + (offset + 5) * face) - 2
+        let bgY = (offset * 1.5) - 2
+        let size = offset + 2
+
+        ctx.fillStyle = 'black'
+        ctx.fillRect(bgX, bgY, size, size)
         for (let cubie = 0; cubie < 9; ++cubie) {
           let index = (face * 9) + cubie
 
-          let x = offset + (cubie % 3) * 20 + (offset * face)
+          let x = offset + (cubie % 3) * 20 + ((offset + 5) * face)
           let y = offset * 1.5 + Math.floor(cubie / 3) * 20
+
+          // ctx.fillStyle = 'black'
+          // ctx.fillRect(x - 2, y - 2, cubieSize + 2, cubieSize + 2)
 
           ctx.fillStyle = colors[this.cubeState[index]]
           ctx.fillRect(x, y, cubieSize - 2, cubieSize - 2)
@@ -183,8 +191,11 @@ export default {
       for (let cubie = 0; cubie < 9; ++cubie) {
         let index = (4 * 9) + cubie
 
-        let x = offset * 2 + (cubie % 3) * 20
-        let y = offset * 2.5 + Math.floor(cubie / 3) * 20
+        let x = (offset + 2.5) * 2 + (cubie % 3) * 20
+        let y = (offset + 2.5) * 2.5 + Math.floor(cubie / 3) * 20
+
+        ctx.fillStyle = 'black'
+        ctx.fillRect(x - 2, y - 2, cubieSize + 2, cubieSize + 2)
 
         ctx.fillStyle = colors[this.cubeState[index]]
         ctx.fillRect(x, y, cubieSize - 2, cubieSize - 2)
@@ -194,8 +205,11 @@ export default {
       for (let cubie = 0; cubie < 9; ++cubie) {
         let index = 45 + cubie
 
-        let x = offset * 2 + (cubie % 3) * 20
-        let y = offset * 0.5 + Math.floor(cubie / 3) * 20
+        let x = (offset + 2.5) * 2 + (cubie % 3) * 20
+        let y = (offset - 10) * 0.5 + Math.floor(cubie / 3) * 20
+
+        ctx.fillStyle = 'black'
+        ctx.fillRect(x - 2, y - 2, cubieSize + 2, cubieSize + 2)
 
         ctx.fillStyle = colors[this.cubeState[index]]
         ctx.fillRect(x, y, cubieSize - 2, cubieSize - 2)

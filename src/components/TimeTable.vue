@@ -1,27 +1,44 @@
 <template>
-  <el-card class='time-table'>
-    <el-table border 
-      :data='tableData'
-      max-height=520 
-      empty-text='Begin Solving!'>
-      <el-table-column type='index' width=80 />
-      <el-table-column prop='time' label='Time' />
-    </el-table>
+  <div>
+    <el-card class='time-table'>
+      <el-table border 
+        :data='tableData'
+        max-height=520
+        @row-click='showDialog'
+        empty-text='Begin Solving!'>
+        <el-table-column type='index' width=80 />
+        <el-table-column prop='time' label='Time' />
+      </el-table>
 
-    <div class="averages">
-      <div class='ao5'>
-        Average Of 5: <span class='average-time'>{{averageOf5}}</span>
-      </div>
+      <el-button v-on:click='clearData' class='btn-clear'>
+        Clear Times
+      </el-button>
 
-      <div class='ao12'>
-        Average Of 12: <span class='average-time'>{{averageOf12}}</span>
+      <div class="averages">
+        <div class='ao5'>
+          Average Of 5: <span class='average-time'>{{averageOf5}}</span>
+        </div>
+
+        <div class='ao12'>
+          Average Of 12: <span class='average-time'>{{averageOf12}}</span>
+        </div>
       </div>
-    </div>
-  </el-card>
+    </el-card>
+
+    <el-dialog
+      title='Scramble Recap'
+      v-model='dialogVisible'
+    >
+      <div>Scramble: {{scramble}}</div>      
+      <CubeRep :scramble='scramble' />
+      <div>Time: {{dialogTime}}</div>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
 import EventBus from './EventBus'
+import CubeRep from './CubeRep'
 
 export default {
 
@@ -29,10 +46,26 @@ export default {
 
   data () {
     return {
-      tableData: []
+      tableData: [],
+      dialogVisible: false,
+      dialogTime: 0.00,
+      scramble: ''
     }
   },
-  mounted: function () {
+  components: {
+    CubeRep
+  },
+  methods: {
+    clearData: function () {
+      this.tableData = []
+    },
+    showDialog: function (row, event, column) {
+      this.scramble = row.scramble
+      this.dialogTime = row.time
+      this.dialogVisible = true
+    }
+  },
+  created: function () {
     EventBus.$on('store', payload => {
       this.tableData.push(payload)
     })
@@ -71,9 +104,13 @@ export default {
   .time-table {
     position: relative;
     float: left;
-    margin-top: 1%;
     width: 17%;
-    height: 80vh;
+    height: 98vh;
+  }
+
+  .btn-clear {
+    margin-top: 5px;
+    width: 100%;
   }
 
   .ao5, .ao12 {
@@ -88,5 +125,9 @@ export default {
 
   .average-time {
     float: right;
+  }
+
+  .scramble-dialog {
+    background: gray;
   }
 </style>
